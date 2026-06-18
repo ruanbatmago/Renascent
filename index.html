@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Renascent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #ffffff;
+      color: #3a3a3a;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #ffffff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      padding: 1.5rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #1a1a1a;
+      font-family: 'Playfair Display', serif;
+      letter-spacing: 2px;
+    }
+
+    .nav-links a {
+      margin-left: 2.5rem;
+      text-decoration: none;
+      color: #555555;
+      font-weight: 500;
+      font-size: 0.95rem;
+      letter-spacing: 0.5px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: #1a1a1a;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 5%;
+    }
+
+    .auth-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 80vh;
+      text-align: center;
+    }
+
+    .auth-box {
+      background: #ffffff;
+      padding: 3.5rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      width: 100%;
+      max-width: 450px;
+      border: 1px solid #e8e8e8;
+    }
+
+    .auth-box h2 {
+      margin-bottom: 2rem;
+      color: #1a1a1a;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+
+    .input-group {
+      margin-bottom: 1.5rem;
+      text-align: left;
+      width: 100%;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 0.7rem;
+      font-weight: 600;
+      color: #3a3a3a;
+      font-size: 0.95rem;
+      letter-spacing: 0.3px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      background-color: #fafafa;
+    }
+
+    .input-group input:focus {
+      outline: none;
+      border-color: #999999;
+      background-color: #fff;
+      box-shadow: 0 0 0 3px rgba(153, 153, 153, 0.1);
+    }
+
+    .auth-btn {
+      background: #1a1a1a;
+      color: #ffffff;
+      border: none;
+      padding: 1rem;
+      width: 100%;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 1.5rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    }
+
+    .auth-btn:hover {
+      background: #333333;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .toggle-form {
+      margin-top: 1.5rem;
+      color: #999999;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.3s;
+    }
+
+    .toggle-form:hover {
+      color: #1a1a1a;
+    }
+
+    .catalog-title {
+      font-size: 2.8rem;
+      margin-bottom: 3rem;
+      text-align: center;
+      color: #1a1a1a;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      letter-spacing: 1px;
+      position: relative;
+      padding-bottom: 1rem;
+    }
+
+    .catalog-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 2px;
+      background: #1a1a1a;
+      border-radius: 2px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+      margin: 2rem 0;
+    }
+
+    .product-card {
+      background: #ffffff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      border: 1px solid #e8e8e8;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+    }
+
+    .product-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: #d0d0d0;
+      z-index: 1;
+    }
+
+    .product-img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .product-card:hover .product-img {
+      transform: scale(1.05);
+    }
+
+    .product-info {
+      padding: 1.8rem;
+    }
+
+    .product-title {
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+      color: #1a1a1a;
+      font-weight: 600;
+      line-height: 1.4;
+      min-height: 2.4rem;
+    }
+
+    .product-price {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #3a3a3a;
+    }
+
+    .screen {
+      display: none;
+    }
+
+    .screen.active {
+      display: block;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      background: #f5f5f5;
+      color: #666666;
+      margin-top: 4rem;
+      border-top: 1px solid #e8e8e8;
+    }
+
+    footer p {
+      font-size: 0.95rem;
+      letter-spacing: 0.3px;
+    }
+
+    .product-detail-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: start;
+      max-width: 1200px;
+      margin: 0 auto;
+      animation: slideUp 0.5s ease-out;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .product-detail-img {
+      width: 100%;
+      height: 550px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      border: 1px solid #e8e8e8;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .product-detail-container:hover .product-detail-img {
+      transform: scale(1.02);
+    }
+
+    .product-detail-info {
+      padding: 1rem 0;
+    }
+
+    .product-detail-title {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      color: #1a1a1a;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .product-detail-price {
+      font-size: 2.2rem;
+      color: #3a3a3a;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+    }
+
+    .product-rating {
+      display: flex;
+      align-items: center;
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .stars {
+      color: #999999;
+      margin-right: 0.8rem;
+      font-size: 1.1rem;
+    }
+
+    .product-description {
+      display: none;
+    }
+
+    .product-quantity {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+      padding: 1.2rem;
+      background-color: #f9f9f9;
+      border-radius: 10px;
+      border: 1px solid #e8e8e8;
+    }
+
+    .quantity-label {
+      font-weight: 700;
+      color: #1a1a1a;
+      font-size: 0.95rem;
+      letter-spacing: 0.3px;
+    }
+
+    .quantity-input {
+      display: flex;
+      align-items: center;
+      border: 1px solid #d0d0d0;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .quantity-btn {
+      width: 40px;
+      height: 40px;
+      border: none;
+      background: #f0f0f0;
+      cursor: pointer;
+      font-size: 1.1rem;
+      color: #1a1a1a;
+      font-weight: 700;
+      transition: all 0.2s ease;
+    }
+
+    .quantity-btn:hover {
+      background: #e0e0e0;
+    }
+
+    .quantity-display {
+      width: 60px;
+      text-align: center;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+
+    .product-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-direction: column;
+    }
+
+    .add-to-cart-btn {
+      width: 100%;
+      background: #1a1a1a;
+      color: #ffffff;
+      border: none;
+      padding: 1.2rem;
+      border-radius: 10px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    }
+
+    .add-to-cart-btn:hover {
+      background: #333333;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .back-btn {
+      background: #ffffff;
+      color: #1a1a1a;
+      border: 1px solid #d0d0d0;
+      padding: 0.9rem 1.8rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      letter-spacing: 0.3px;
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    }
+
+    .back-btn:hover {
+      background: #f5f5f5;
+      border-color: #999999;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: #1a1a1a;
+      color: #ffffff;
+      padding: 0.7rem 1rem;
+      border-radius: 50%;
+      font-weight: 700;
+      min-width: 35px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .cart-container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .cart-title {
+      font-size: 2.8rem;
+      margin-bottom: 2rem;
+      color: #1a1a1a;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .cart-empty {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: #999999;
+      font-size: 1.1rem;
+      background: #f9f9f9;
+      border-radius: 12px;
+      border: 1px dashed #d0d0d0;
+    }
+
+    .cart-items {
+      margin-bottom: 2.5rem;
+    }
+
+    .cart-item {
+      display: grid;
+      grid-template-columns: 120px 1fr auto;
+      gap: 2rem;
+      align-items: center;
+      padding: 1.8rem;
+      background: #ffffff;
+      border: 1px solid #e8e8e8;
+      border-radius: 12px;
+      margin-bottom: 1.2rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      transition: all 0.3s ease;
+    }
+
+    .cart-item:hover {
+      border-color: #cccccc;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .cart-item-img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 1px solid #e8e8e8;
+    }
+
+    .cart-item-details h3 {
+      margin-bottom: 0.5rem;
+      color: #1a1a1a;
+      font-weight: 600;
+    }
+
+    .cart-item-price {
+      color: #3a3a3a;
+      font-weight: 700;
+    }
+
+    .cart-item-total {
+      text-align: right;
+    }
+
+    .cart-item-total p {
+      margin-bottom: 0.5rem;
+    }
+
+    .remove-btn {
+      background: #f5f5f5;
+      color: #d32f2f;
+      border: 1px solid #e8e8e8;
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      margin-top: 0.5rem;
+    }
+
+    .remove-btn:hover {
+      background: #ffe0e0;
+      border-color: #d32f2f;
+    }
+
+    .cart-summary {
+      background: #f9f9f9;
+      padding: 2rem;
+      border-radius: 12px;
+      border: 1px solid #e8e8e8;
+      text-align: right;
+    }
+
+    .cart-summary p {
+      margin-bottom: 0.8rem;
+      font-size: 1.05rem;
+      color: #3a3a3a;
+    }
+
+    .cart-total {
+      font-size: 1.8rem;
+      color: #1a1a1a;
+      font-weight: 800;
+      margin-top: 1.2rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid #e8e8e8;
+    }
+
+    .checkout-btn {
+      background: #1a1a1a;
+      color: white;
+      border: none;
+      padding: 1.2rem;
+      border-radius: 10px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 1.5rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    }
+
+    .checkout-btn:hover {
+      background: #333333;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    @media (max-width: 768px) {
+      .product-detail-container {
+        grid-template-columns: 1fr;
+      }
+
+      .cart-item {
+        grid-template-columns: 80px 1fr;
+      }
+
+      .product-buttons {
+        flex-direction: column;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+      }
+
+      .nav-links a {
+        margin-left: 1.5rem;
+        font-size: 0.9rem;
+      }
+
+      .catalog-title {
+        font-size: 2rem;
+      }
+
+      .product-detail-title {
+        font-size: 1.8rem;
+      }
+
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-links a {
+        margin-left: 1rem;
+        font-size: 0.8rem;
+      }
+
+      .auth-box {
+        padding: 2rem;
+      }
+
+      .product-detail-img {
+        height: 350px;
+      }
+
+      .cart-item {
+        gap: 1rem;
+        padding: 1rem;
+      }
+
+      .cart-item-img {
+        width: 80px;
+        height: 80px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Renascent</div>
+    <div class="nav-links">
+      <a href="#" id="home-link">Início</a>
+      <a href="#" id="login-link">Login</a>
+    </div>
+  </header>
+
+  <div id="auth-screen" class="screen active container">
+    <div class="auth-container">
+      <div class="auth-box">
+        <h2 id="auth-title">Criar Conta</h2>
+        <form id="auth-form">
+          <div class="input-group">
+            <label for="name">Nome</label>
+            <input type="text" id="name" placeholder="Seu nome" />
+          </div>
+          <div class="input-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="seu@email.com" />
+          </div>
+          <div class="input-group">
+            <label for="password">Senha</label>
+            <input type="password" id="password" placeholder="Sua senha" />
+          </div>
+          <button type="submit" class="auth-btn">Cadastrar</button>
+        </form>
+        <p class="toggle-form" id="toggle-form">
+          Já tem conta? Faça login
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div id="home-screen" class="screen container">
+    <h1 class="catalog-title">Coleção de Roupas</h1>
+    <div class="product-grid" id="product-grid">
+    </div>
+  </div>
+
+  <div id="product-detail-screen" class="screen container">
+    <button class="back-btn" id="back-from-detail">← Voltar</button>
+    <div style="position: relative; margin-top: 2rem;">
+      <div class="product-detail-container">
+        <img id="detail-img" src="" alt="" class="product-detail-img" />
+        <div class="product-detail-info">
+          <h1 id="detail-title" class="product-detail-title"></h1>
+          <p id="detail-price" class="product-detail-price"></p>
+          <div class="product-rating">
+            <span class="stars">★★★★★</span>
+            <span>(42 avaliações)</span>
+          </div>
+          <p id="detail-description" class="product-description"></p>
+          <div class="product-quantity">
+            <label class="quantity-label">Quantidade:</label>
+            <div class="quantity-input">
+              <button class="quantity-btn" id="qty-minus">−</button>
+              <div class="quantity-display" id="qty-display">1</div>
+              <button class="quantity-btn" id="qty-plus">+</button>
+            </div>
+          </div>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn" id="add-to-cart">🛒 Adicionar ao Carrinho</button>
+            <a href="#" id="view-cart-link" style="text-decoration: none;">
+              <button class="back-btn" style="width: 100%; margin: 0;">
+                🛒 Ver Carrinho (<span id="cart-count">0</span>)
+              </button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="cart-screen" class="screen container">
+    <button class="back-btn" id="back-from-cart">← Voltar</button>
+    <h1 class="cart-title" style="margin-top: 1.5rem;">🛒 Seu Carrinho</h1>
+    <div id="cart-content">
+      <div class="cart-empty">Seu carrinho está vazio</div>
+    </div>
+  </div>
+
+  <footer>
+    <p>✨ Renascent</p>
+    <p style="margin-top: 0.5rem; font-size: 0.85rem; opacity: 0.8;">&copy; 2026 Renascent. feito por ruan, antony, humberto e darlan</p>
+  </footer>
+
+  <script>
+    const products = [
+      { id: 1, name: "Baby tee Holanda", price: "R$ 99,90", img: "baby tee holanda.webp", description: "Camiseta confortável com estampa exclusiva da Holanda. Perfeita para o dia a dia." },
+      { id: 2, name: "Baby tee MMM", price: "R$ 99,90", img: "bt mmm.webp", description: "Camisa moderna e sofisticada. Ideal para looks casuais e profissionais." },
+      { id: 3, name: "Umbro piet blusa", price: "R$ 99,90", img: "carnan-online_0002_umbro2.webp", description: "Jaqueta de qualidade premium com design esportivo elegante." },
+      { id: 4, name: "Umbro piet casaco", price: "R$ 99,90", img: "carnan-online_0006_umbro6.webp", description: "Peça versátil que combina com qualquer visual. Conforto garantido." },
+      { id: 5, name: "Moletom Carnan azul", price: "R$ 99,90", img: "carnan-online_0050_Standard_Line-32000.webp", description: "Coleção padrão com excelente custo-benefício e qualidade superior." },
+      { id: 6, name: "Moletom Carnan roxo", price: "R$ 99,90", img: "carnan-online_0054_Standard_Line-32014.webp", description: "Peça essencial para qualquer guarda-roupa. Disponível em várias cores." },
+      { id: 7, name: "Moletom Mad Brasil", price: "R$ 99,90", img: "moletom brasil.webp", description: "Moletom confortável com design brasileiro. Perfeito para dias frios." },
+      { id: 8, name: "Moletom Mad", price: "R$ 99,90", img: "moletom mad.webp", description: "Moletom estiloso com acabamento premium. Versátil para qualquer ocasião." },
+      { id: 9, name: "Piet casaco", price: "R$ 99,90", img: "piet-online_0000_piet-catalogo10958.jpg", description: "Peça exclusiva da coleção Piet. Design sofisticado e moderno." },
+      { id: 10, name: "Piet Oakley manga comprida", price: "R$ 99,90", img: "piet-online_0086_FOA40912102E-0095_1_.jpg", description: "Coleção premium Piet com qualidade superior. Conforto total." },
+      { id: 11, name: "Piet milan blusa", price: "R$ 99,90", img: "piet-online_0086_piet-catalogo10971.jpg", description: "Peça sofisticada e elegante. Ideal para looks refinados." },
+      { id: 12, name: "Piet Oakley casaco", price: "R$ 99,90", img: "piet-online_0096_FOA40912102E-0107 hover.jpg", description: "Design exclusivo com materiais de primeira qualidade. Estilo garantido." }
+    ];
+
+    let cart = [];
+    let currentQuantity = 1;
+    let selectedProduct = null;
+
+    const authScreen = document.getElementById("auth-screen");
+    const homeScreen = document.getElementById("home-screen");
+    const productDetailScreen = document.getElementById("product-detail-screen");
+    const cartScreen = document.getElementById("cart-screen");
+    const authForm = document.getElementById("auth-form");
+    const authTitle = document.getElementById("auth-title");
+    const toggleForm = document.getElementById("toggle-form");
+    const productGrid = document.getElementById("product-grid");
+    const homeLink = document.getElementById("home-link");
+    const loginLink = document.getElementById("login-link");
+
+    let isLoginMode = false;
+
+    toggleForm.addEventListener("click", () => {
+      isLoginMode = !isLoginMode;
+      authTitle.textContent = isLoginMode ? "Fazer Login" : "Criar Conta";
+      authForm.querySelector("button").textContent = isLoginMode ? "Entrar" : "Cadastrar";
+      toggleForm.textContent = isLoginMode
+        ? "Ainda não tem conta? Cadastre-se"
+        : "Já tem conta? Faça login";
+    });
+
+    authForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      if (isLoginMode) {
+        alert(`Bem-vindo de volta, ${email}!`);
+      } else {
+        alert(`Cadastro realizado com sucesso, ${name}!`);
+      }
+
+      // Ir para a tela inicial
+      authScreen.classList.remove("active");
+      homeScreen.classList.add("active");
+    });
+
+    function goToScreen(screenId) {
+      authScreen.classList.remove("active");
+      homeScreen.classList.remove("active");
+      productDetailScreen.classList.remove("active");
+      cartScreen.classList.remove("active");
+      document.getElementById(screenId).classList.add("active");
+    }
+
+    homeLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      goToScreen("home-screen");
+    });
+
+    loginLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      authScreen.classList.add("active");
+      homeScreen.classList.remove("active");
+      productDetailScreen.classList.remove("active");
+      cartScreen.classList.remove("active");
+      isLoginMode = false;
+      authTitle.textContent = "Criar Conta";
+      authForm.querySelector("button").textContent = "Cadastrar";
+      toggleForm.textContent = "Já tem conta? Faça login";
+    });
+
+    function loadProducts() {
+      productGrid.innerHTML = "";
+      products.forEach(product => {
+        const card = document.createElement("div");
+        card.className = "product-card";
+        card.style.cursor = "pointer";
+        card.innerHTML = `
+          <img src="${product.img}" alt="${product.name}" class="product-img" />
+          <div class="product-info">
+            <h3 class="product-title">${product.name}</h3>
+            <p class="product-price">${product.price}</p>
+          </div>
+        `;
+        card.addEventListener("click", () => showProductDetail(product.id));
+        productGrid.appendChild(card);
+      });
+    }
+
+    function showProductDetail(productId) {
+      selectedProduct = products.find(p => p.id === productId);
+      const price = selectedProduct.price.replace("R$ ", "").replace(",", ".");
+      
+      document.getElementById("detail-img").src = selectedProduct.img;
+      document.getElementById("detail-title").textContent = selectedProduct.name;
+      document.getElementById("detail-price").textContent = selectedProduct.price;
+      document.getElementById("detail-description").textContent = selectedProduct.description;
+      
+      currentQuantity = 1;
+      document.getElementById("qty-display").textContent = "1";
+      
+      goToScreen("product-detail-screen");
+    }
+
+    document.getElementById("qty-plus").addEventListener("click", () => {});
+
+    document.getElementById("qty-minus").addEventListener("click", () => {});
+
+    document.getElementById("add-to-cart").addEventListener("click", () => {});
+
+    document.getElementById("back-from-detail").addEventListener("click", () => {
+      goToScreen("home-screen");
+    });
+
+    document.getElementById("back-from-cart").addEventListener("click", () => {
+      goToScreen("home-screen");
+    });
+
+    document.getElementById("view-cart-link").addEventListener("click", (e) => {
+      e.preventDefault();
+    });
+
+    function updateCartCount() {}
+
+    function showCart() {}
+
+    window.removeFromCart = function(productId) {};
+
+    loadProducts();
+  </script>
+</body>
+</html>
