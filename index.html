@@ -57,6 +57,34 @@
       color: #1a1a1a;
     }
 
+    .nav-links a.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+      cursor: default;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .user-status {
+      font-size: 0.95rem;
+      color: #555555;
+      margin-left: 1.5rem;
+      font-weight: 500;
+    }
+
+    .auth-btn.secondary {
+      background: #ffffff;
+      color: #d32f2f;
+      border: 1px solid #d32f2f;
+      margin-top: 0.75rem;
+    }
+
+    .auth-btn.secondary:hover {
+      background: #fdf2f2;
+    }
+
     .container {
       max-width: 1200px;
       margin: 0 auto;
@@ -662,26 +690,68 @@
     <div class="logo">Renascent</div>
     <div class="nav-links">
       <a href="#" id="home-link">Início</a>
-      <a href="#" id="login-link">Login</a>
+      <a href="#" id="products-link">Produtos</a>
+      <a href="#" id="profile-link" class="disabled">Perfil</a>
+      <a href="#" id="cart-link" class="disabled">Carrinho</a>
+      <a href="#" id="auth-link">Entrar</a>
     </div>
+    <div class="user-status" id="user-status">Visitante</div>
   </header>
 
-  <div id="auth-screen" class="screen active container">
+  <div id="auth-screen" class="screen container hidden">
     <div class="auth-container">
       <div class="auth-box">
         <h2 id="auth-title">Criar Conta</h2>
         <form id="auth-form">
-          <div class="input-group">
+          <div class="input-group auth-only register-only">
             <label for="name">Nome</label>
             <input type="text" id="name" placeholder="Seu nome" />
+          </div>
+          <div class="input-group auth-only register-only">
+            <label for="cpf">CPF</label>
+            <input type="text" id="cpf" placeholder="000.000.000-00" maxlength="14" />
           </div>
           <div class="input-group">
             <label for="email">Email</label>
             <input type="email" id="email" placeholder="seu@email.com" />
           </div>
+          <div class="input-group auth-only register-only">
+            <label for="cep">CEP</label>
+            <input type="text" id="cep" placeholder="00000-000" maxlength="9" />
+          </div>
+          <div class="address-fields auth-only register-only">
+            <div class="input-group">
+              <label for="logradouro">Endereço</label>
+              <input type="text" id="logradouro" placeholder="Rua, Avenida..." />
+            </div>
+            <div class="input-group">
+              <label for="bairro">Bairro</label>
+              <input type="text" id="bairro" placeholder="Seu bairro" />
+            </div>
+            <div class="input-group">
+              <label for="cidade">Cidade</label>
+              <input type="text" id="cidade" placeholder="Sua cidade" />
+            </div>
+            <div class="input-group">
+              <label for="uf">UF</label>
+              <input type="text" id="uf" placeholder="UF" maxlength="2" />
+            </div>
+            <div class="input-group">
+              <label for="numero">Número</label>
+              <input type="text" id="numero" placeholder="Número" />
+            </div>
+            <div class="input-group">
+              <label for="complemento">Complemento</label>
+              <input type="text" id="complemento" placeholder="Apartamento, bloco..." />
+            </div>
+          </div>
           <div class="input-group">
             <label for="password">Senha</label>
             <input type="password" id="password" placeholder="Sua senha" />
+          </div>
+          <div class="input-group auth-only register-only">
+            <label for="confirm-password">Confirmação de senha</label>
+            <input type="password" id="confirm-password" placeholder="Repita sua senha" />
           </div>
           <button type="submit" class="auth-btn">Cadastrar</button>
         </form>
@@ -692,7 +762,65 @@
     </div>
   </div>
 
-  <div id="home-screen" class="screen container">
+  <div id="profile-screen" class="screen container">
+    <div class="auth-container">
+      <div class="auth-box">
+        <h2>Meu Perfil</h2>
+        <form id="profile-form">
+          <div class="input-group">
+            <label for="profile-name">Nome</label>
+            <input type="text" id="profile-name" />
+          </div>
+          <div class="input-group">
+            <label for="profile-cpf">CPF</label>
+            <input type="text" id="profile-cpf" maxlength="14" />
+          </div>
+          <div class="input-group">
+            <label for="profile-email">Email</label>
+            <input type="email" id="profile-email" />
+          </div>
+          <div class="input-group">
+            <label for="profile-cep">CEP</label>
+            <input type="text" id="profile-cep" maxlength="9" />
+          </div>
+          <div class="address-fields">
+            <div class="input-group">
+              <label for="profile-logradouro">Endereço</label>
+              <input type="text" id="profile-logradouro" />
+            </div>
+            <div class="input-group">
+              <label for="profile-bairro">Bairro</label>
+              <input type="text" id="profile-bairro" />
+            </div>
+            <div class="input-group">
+              <label for="profile-cidade">Cidade</label>
+              <input type="text" id="profile-cidade" />
+            </div>
+            <div class="input-group">
+              <label for="profile-uf">UF</label>
+              <input type="text" id="profile-uf" maxlength="2" />
+            </div>
+            <div class="input-group">
+              <label for="profile-numero">Número</label>
+              <input type="text" id="profile-numero" />
+            </div>
+            <div class="input-group">
+              <label for="profile-complemento">Complemento</label>
+              <input type="text" id="profile-complemento" />
+            </div>
+          </div>
+          <div class="input-group">
+            <label for="profile-password">Senha</label>
+            <input type="password" id="profile-password" placeholder="Nova senha (opcional)" />
+          </div>
+          <button type="submit" class="auth-btn">Salvar alterações</button>
+          <button type="button" class="auth-btn secondary" id="delete-account">Excluir conta</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="home-screen" class="screen active container">
     <h1 class="catalog-title">Coleção de Roupas</h1>
     <div class="product-grid" id="product-grid">
     </div>
@@ -747,91 +875,332 @@
 
   <script>
     const products = [
-      { id: 1, name: "Baby tee Holanda", price: "R$ 99,90", img: "baby tee holanda.webp", description: "Camiseta confortável com estampa exclusiva da Holanda. Perfeita para o dia a dia." },
-      { id: 2, name: "Baby tee MMM", price: "R$ 99,90", img: "bt mmm.webp", description: "Camisa moderna e sofisticada. Ideal para looks casuais e profissionais." },
-      { id: 3, name: "Umbro piet blusa", price: "R$ 99,90", img: "carnan-online_0002_umbro2.webp", description: "Jaqueta de qualidade premium com design esportivo elegante." },
-      { id: 4, name: "Umbro piet casaco", price: "R$ 99,90", img: "carnan-online_0006_umbro6.webp", description: "Peça versátil que combina com qualquer visual. Conforto garantido." },
-      { id: 5, name: "Moletom Carnan azul", price: "R$ 99,90", img: "carnan-online_0050_Standard_Line-32000.webp", description: "Coleção padrão com excelente custo-benefício e qualidade superior." },
-      { id: 6, name: "Moletom Carnan roxo", price: "R$ 99,90", img: "carnan-online_0054_Standard_Line-32014.webp", description: "Peça essencial para qualquer guarda-roupa. Disponível em várias cores." },
-      { id: 7, name: "Moletom Mad Brasil", price: "R$ 99,90", img: "moletom brasil.webp", description: "Moletom confortável com design brasileiro. Perfeito para dias frios." },
-      { id: 8, name: "Moletom Mad", price: "R$ 99,90", img: "moletom mad.webp", description: "Moletom estiloso com acabamento premium. Versátil para qualquer ocasião." },
-      { id: 9, name: "Piet casaco", price: "R$ 99,90", img: "piet-online_0000_piet-catalogo10958.jpg", description: "Peça exclusiva da coleção Piet. Design sofisticado e moderno." },
-      { id: 10, name: "Piet Oakley manga comprida", price: "R$ 99,90", img: "piet-online_0086_FOA40912102E-0095_1_.jpg", description: "Coleção premium Piet com qualidade superior. Conforto total." },
-      { id: 11, name: "Piet milan blusa", price: "R$ 99,90", img: "piet-online_0086_piet-catalogo10971.jpg", description: "Peça sofisticada e elegante. Ideal para looks refinados." },
-      { id: 12, name: "Piet Oakley casaco", price: "R$ 99,90", img: "piet-online_0096_FOA40912102E-0107 hover.jpg", description: "Design exclusivo com materiais de primeira qualidade. Estilo garantido." }
+      { id: 1, name: "Baby tee Holanda", price: "R$ 99,90", img: "imagens/baby tee holanda.webp", description: "Camiseta confortável com estampa exclusiva da Holanda. Perfeita para o dia a dia." },
+      { id: 2, name: "Baby tee MMM", price: "R$ 99,90", img: "imagens/bt mmm.webp", description: "Camisa moderna e sofisticada. Ideal para looks casuais e profissionais." },
+      { id: 3, name: "Umbro piet blusa", price: "R$ 99,90", img: "imagens/carnan-online_0002_umbro2.webp", description: "Jaqueta de qualidade premium com design esportivo elegante." },
+      { id: 4, name: "Umbro piet casaco", price: "R$ 99,90", img: "imagens/carnan-online_0006_umbro6.webp", description: "Peça versátil que combina com qualquer visual. Conforto garantido." },
+      { id: 5, name: "Moletom Carnan azul", price: "R$ 99,90", img: "imagens/carnan-online_0050_Standard_Line-32000.webp", description: "Coleção padrão com excelente custo-benefício e qualidade superior." },
+      { id: 6, name: "Moletom Carnan roxo", price: "R$ 99,90", img: "imagens/carnan-online_0054_Standard_Line-32014.webp", description: "Peça essencial para qualquer guarda-roupa. Disponível em várias cores." },
+      { id: 7, name: "Moletom Mad Brasil", price: "R$ 99,90", img: "imagens/moletom brasil.webp", description: "Moletom confortável com design brasileiro. Perfeito para dias frios." },
+      { id: 8, name: "Moletom Mad", price: "R$ 99,90", img: "imagens/moletom mad.webp", description: "Moletom estiloso com acabamento premium. Versátil para qualquer ocasião." },
+      { id: 9, name: "Piet casaco", price: "R$ 99,90", img: "imagens/piet-online_0000_piet-catalogo10958.jpg", description: "Peça exclusiva da coleção Piet. Design sofisticado e moderno." },
+      { id: 10, name: "Piet Oakley manga comprida", price: "R$ 99,90", img: "imagens/piet-online_0086_FOA40912102E-0095_1_.jpg", description: "Coleção premium Piet com qualidade superior. Conforto total." },
+      { id: 11, name: "Piet milan blusa", price: "R$ 99,90", img: "imagens/piet-online_0086_piet-catalogo10971.jpg", description: "Peça sofisticada e elegante. Ideal para looks refinados." },
+      { id: 12, name: "Piet Oakley casaco", price: "R$ 99,90", img: "imagens/piet-online_0096_FOA40912102E-0107 hover.jpg", description: "Design exclusivo com materiais de primeira qualidade. Estilo garantido." }
     ];
+
+    const imageBasePath = "imagens/";
+    function getImagePath(src) {
+      if (!src) return "";
+      if (src.startsWith("http://") || src.startsWith("https://") || src.startsWith("data:") || src.includes("/")) {
+        return src;
+      }
+      return imageBasePath + src;
+    }
 
     let cart = [];
     let currentQuantity = 1;
     let selectedProduct = null;
+    let currentUser = null;
 
     const authScreen = document.getElementById("auth-screen");
     const homeScreen = document.getElementById("home-screen");
     const productDetailScreen = document.getElementById("product-detail-screen");
     const cartScreen = document.getElementById("cart-screen");
+    const profileScreen = document.getElementById("profile-screen");
     const authForm = document.getElementById("auth-form");
+    const profileForm = document.getElementById("profile-form");
     const authTitle = document.getElementById("auth-title");
     const toggleForm = document.getElementById("toggle-form");
     const productGrid = document.getElementById("product-grid");
     const homeLink = document.getElementById("home-link");
-    const loginLink = document.getElementById("login-link");
+    const productsLink = document.getElementById("products-link");
+    const profileLink = document.getElementById("profile-link");
+    const cartLink = document.getElementById("cart-link");
+    const authLink = document.getElementById("auth-link");
+    const userStatus = document.getElementById("user-status");
+    const deleteAccountBtn = document.getElementById("delete-account");
+    const cepInput = document.getElementById("cep");
+    const profileCepInput = document.getElementById("profile-cep");
+
+    const registerFields = document.querySelectorAll(".register-only");
 
     let isLoginMode = false;
 
-    toggleForm.addEventListener("click", () => {
-      isLoginMode = !isLoginMode;
+    function setActiveScreen(screenId) {
+      [authScreen, homeScreen, productDetailScreen, cartScreen, profileScreen].forEach(screen => {
+        screen.classList.remove("active");
+        screen.classList.add("hidden");
+      });
+
+      const screen = document.getElementById(screenId);
+      screen.classList.add("active");
+      screen.classList.remove("hidden");
+      window.scrollTo(0, 0);
+    }
+
+    function getStoredUser() {
+      try {
+        return JSON.parse(localStorage.getItem("renascentUser")) || null;
+      } catch (error) {
+        return null;
+      }
+    }
+
+    function saveUser(user) {
+      localStorage.setItem("renascentUser", JSON.stringify(user));
+      currentUser = user;
+    }
+
+    function removeUser() {
+      localStorage.removeItem("renascentUser");
+      currentUser = null;
+    }
+
+    function saveCart() {
+      localStorage.setItem("renascentCart", JSON.stringify(cart));
+    }
+
+    function loadCart() {
+      const storedCart = localStorage.getItem("renascentCart");
+      cart = storedCart ? JSON.parse(storedCart) : [];
+      updateCartCount();
+    }
+
+    function updateNavByAuth() {
+      const loggedIn = Boolean(currentUser);
+      profileLink.classList.toggle("disabled", !loggedIn);
+      cartLink.classList.toggle("disabled", !loggedIn);
+      authLink.textContent = loggedIn ? "Sair" : "Entrar";
+      userStatus.textContent = loggedIn ? currentUser.name : "Visitante";
+    }
+
+    function showAuthScreen(loginMode = false) {
+      isLoginMode = loginMode;
       authTitle.textContent = isLoginMode ? "Fazer Login" : "Criar Conta";
       authForm.querySelector("button").textContent = isLoginMode ? "Entrar" : "Cadastrar";
       toggleForm.textContent = isLoginMode
         ? "Ainda não tem conta? Cadastre-se"
         : "Já tem conta? Faça login";
+
+      registerFields.forEach((field) => {
+        field.classList.toggle("hidden", isLoginMode);
+      });
+
+      setActiveScreen("auth-screen");
+    }
+
+    function validateCPF(cpf) {
+      const clean = cpf.replace(/\D/g, "");
+      if (!clean || clean.length !== 11 || /^([0-9])\1+$/.test(clean)) {
+        return false;
+      }
+
+      const digits = clean.split("").map(Number);
+      const validator = (position) => {
+        const slice = digits.slice(0, position - 1);
+        const factor = position;
+        const sum = slice.reduce((acc, num, index) => acc + num * (factor - index), 0);
+        const check = (sum * 10) % 11;
+        return check === 10 ? 0 : check;
+      };
+
+      return validator(10) === digits[9] && validator(11) === digits[10];
+    }
+
+    function formatInput(value, type) {
+      const digits = value.replace(/\D/g, "");
+      if (type === "cpf") {
+        return digits
+          .replace(/(\d{3})(\d)/, "$1.$2")
+          .replace(/(\d{3})(\d)/, "$1.$2")
+          .replace(/(\d{3})(\d{1,2})$/, "$1-$2")
+          .slice(0, 14);
+      }
+      if (type === "cep") {
+        return digits.replace(/(\d{5})(\d)/, "$1-$2").slice(0, 9);
+      }
+      return value;
+    }
+
+    function fetchAddress(cepValue, callback) {
+      const cep = cepValue.replace(/\D/g, "");
+      if (!cep || cep.length !== 8) {
+        return;
+      }
+
+      fetch(`https://viacep.com.br/ws/${cep}/json/`)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.erro) {
+            alert("CEP não encontrado.");
+            return;
+          }
+          callback(data);
+        })
+        .catch(() => alert("Erro ao consultar o CEP. Tente novamente."));
+    }
+
+    function fillAddressFields(prefix, data) {
+      document.getElementById(`${prefix}logradouro`).value = data.logradouro || "";
+      document.getElementById(`${prefix}bairro`).value = data.bairro || "";
+      document.getElementById(`${prefix}cidade`).value = data.localidade || "";
+      document.getElementById(`${prefix}uf`).value = data.uf || "";
+    }
+
+    function setProfileFields() {
+      if (!currentUser) {
+        return;
+      }
+      document.getElementById("profile-name").value = currentUser.name || "";
+      document.getElementById("profile-cpf").value = currentUser.cpf || "";
+      document.getElementById("profile-email").value = currentUser.email || "";
+      document.getElementById("profile-cep").value = currentUser.cep || "";
+      document.getElementById("profile-logradouro").value = currentUser.logradouro || "";
+      document.getElementById("profile-bairro").value = currentUser.bairro || "";
+      document.getElementById("profile-cidade").value = currentUser.cidade || "";
+      document.getElementById("profile-uf").value = currentUser.uf || "";
+      document.getElementById("profile-numero").value = currentUser.numero || "";
+      document.getElementById("profile-complemento").value = currentUser.complemento || "";
+      document.getElementById("profile-password").value = "";
+    }
+
+    function showMessage(message) {
+      alert(message);
+    }
+
+    toggleForm.addEventListener("click", () => {
+      showAuthScreen(!isLoginMode);
     });
 
     authForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      const name = document.getElementById("name").value;
-      const email = document.getElementById("email").value;
+      const name = document.getElementById("name").value.trim();
+      const cpf = document.getElementById("cpf").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const cep = document.getElementById("cep").value.trim();
+      const logradouro = document.getElementById("logradouro").value.trim();
+      const bairro = document.getElementById("bairro").value.trim();
+      const cidade = document.getElementById("cidade").value.trim();
+      const uf = document.getElementById("uf").value.trim().toUpperCase();
+      const numero = document.getElementById("numero").value.trim();
+      const complemento = document.getElementById("complemento").value.trim();
       const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirm-password").value;
 
-      if (isLoginMode) {
-        alert(`Bem-vindo de volta, ${email}!`);
-      } else {
-        alert(`Cadastro realizado com sucesso, ${name}!`);
+      if (!email || !password) {
+        showMessage("Preencha email e senha.");
+        return;
       }
 
-      // Ir para a tela inicial
-      authScreen.classList.remove("active");
-      homeScreen.classList.add("active");
+      const storedUser = getStoredUser();
+
+      if (isLoginMode) {
+        if (!storedUser || storedUser.email !== email || storedUser.password !== password) {
+          showMessage("Email ou senha inválidos.");
+          return;
+        }
+
+        currentUser = storedUser;
+        updateNavByAuth();
+        showMessage(`Bem-vindo de volta, ${currentUser.name}!`);
+        setActiveScreen("home-screen");
+        return;
+      }
+
+      if (!name || !cpf || !cep || !logradouro || !bairro || !cidade || !uf || !numero || !confirmPassword) {
+        showMessage("Preencha todos os campos do cadastro.");
+        return;
+      }
+
+      if (!validateCPF(cpf)) {
+        showMessage("CPF inválido.");
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        showMessage("Senha e confirmação não correspondem.");
+        return;
+      }
+
+      const user = {
+        name,
+        cpf: formatInput(cpf, "cpf"),
+        email,
+        cep: formatInput(cep, "cep"),
+        logradouro,
+        bairro,
+        cidade,
+        uf,
+        numero,
+        complemento,
+        password,
+      };
+
+      saveUser(user);
+      updateNavByAuth();
+      showMessage(`Cadastro realizado com sucesso, ${name}!`);
+      setActiveScreen("home-screen");
     });
 
-    function goToScreen(screenId) {
-      authScreen.classList.remove("active");
-      homeScreen.classList.remove("active");
-      productDetailScreen.classList.remove("active");
-      cartScreen.classList.remove("active");
-      document.getElementById(screenId).classList.add("active");
-    }
-
-    homeLink.addEventListener("click", (e) => {
+    profileForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      goToScreen("home-screen");
+      if (!currentUser) {
+        showAuthScreen(true);
+        return;
+      }
+
+      const updated = {
+        ...currentUser,
+        name: document.getElementById("profile-name").value.trim(),
+        cpf: formatInput(document.getElementById("profile-cpf").value.trim(), "cpf"),
+        email: document.getElementById("profile-email").value.trim(),
+        cep: formatInput(document.getElementById("profile-cep").value.trim(), "cep"),
+        logradouro: document.getElementById("profile-logradouro").value.trim(),
+        bairro: document.getElementById("profile-bairro").value.trim(),
+        cidade: document.getElementById("profile-cidade").value.trim(),
+        uf: document.getElementById("profile-uf").value.trim().toUpperCase(),
+        numero: document.getElementById("profile-numero").value.trim(),
+        complemento: document.getElementById("profile-complemento").value.trim(),
+      };
+
+      const newPassword = document.getElementById("profile-password").value;
+      if (newPassword) {
+        updated.password = newPassword;
+      }
+
+      if (!updated.name || !updated.cpf || !updated.email || !updated.cep || !updated.logradouro) {
+        showMessage("Preencha os campos obrigatórios do perfil.");
+        return;
+      }
+
+      if (!validateCPF(updated.cpf)) {
+        showMessage("CPF inválido.");
+        return;
+      }
+
+      saveUser(updated);
+      updateNavByAuth();
+      showMessage("Dados do perfil atualizados com sucesso.");
     });
 
-    loginLink.addEventListener("click", (e) => {
-      e.preventDefault();
-      authScreen.classList.add("active");
-      homeScreen.classList.remove("active");
-      productDetailScreen.classList.remove("active");
-      cartScreen.classList.remove("active");
-      isLoginMode = false;
-      authTitle.textContent = "Criar Conta";
-      authForm.querySelector("button").textContent = "Cadastrar";
-      toggleForm.textContent = "Já tem conta? Faça login";
+    deleteAccountBtn.addEventListener("click", () => {
+      if (!currentUser) {
+        return;
+      }
+      if (confirm("Deseja realmente excluir sua conta? Esta ação não pode ser desfeita.")) {
+        removeUser();
+        cart = [];
+        saveCart();
+        updateNavByAuth();
+        showMessage("Conta excluída com sucesso.");
+        setActiveScreen("home-screen");
+      }
     });
 
     function loadProducts() {
       productGrid.innerHTML = "";
-      products.forEach(product => {
+      products.forEach((product) => {
         const card = document.createElement("div");
         card.className = "product-card";
         card.style.cursor = "pointer";
@@ -848,45 +1217,193 @@
     }
 
     function showProductDetail(productId) {
-      selectedProduct = products.find(p => p.id === productId);
-      const price = selectedProduct.price.replace("R$ ", "").replace(",", ".");
-      
+      selectedProduct = products.find((p) => p.id === productId);
       document.getElementById("detail-img").src = selectedProduct.img;
       document.getElementById("detail-title").textContent = selectedProduct.name;
       document.getElementById("detail-price").textContent = selectedProduct.price;
       document.getElementById("detail-description").textContent = selectedProduct.description;
-      
       currentQuantity = 1;
       document.getElementById("qty-display").textContent = "1";
-      
-      goToScreen("product-detail-screen");
+      setActiveScreen("product-detail-screen");
     }
 
-    document.getElementById("qty-plus").addEventListener("click", () => {});
+    document.getElementById("qty-plus").addEventListener("click", () => {
+      currentQuantity += 1;
+      document.getElementById("qty-display").textContent = currentQuantity;
+    });
 
-    document.getElementById("qty-minus").addEventListener("click", () => {});
+    document.getElementById("qty-minus").addEventListener("click", () => {
+      if (currentQuantity > 1) {
+        currentQuantity -= 1;
+        document.getElementById("qty-display").textContent = currentQuantity;
+      }
+    });
 
-    document.getElementById("add-to-cart").addEventListener("click", () => {});
+    document.getElementById("add-to-cart").addEventListener("click", () => {
+      if (!currentUser) {
+        showAuthScreen(true);
+        return;
+      }
+      if (!selectedProduct) {
+        return;
+      }
+      const existing = cart.find((item) => item.id === selectedProduct.id);
+      if (existing) {
+        existing.quantity += currentQuantity;
+      } else {
+        cart.push({
+          id: selectedProduct.id,
+          name: selectedProduct.name,
+          price: selectedProduct.price,
+          img: selectedProduct.img,
+          quantity: currentQuantity,
+        });
+      }
+      saveCart();
+      updateCartCount();
+      showMessage("Produto adicionado ao carrinho.");
+    });
 
     document.getElementById("back-from-detail").addEventListener("click", () => {
-      goToScreen("home-screen");
+      setActiveScreen("home-screen");
     });
 
     document.getElementById("back-from-cart").addEventListener("click", () => {
-      goToScreen("home-screen");
+      setActiveScreen("home-screen");
     });
 
     document.getElementById("view-cart-link").addEventListener("click", (e) => {
       e.preventDefault();
+      if (!currentUser) {
+        showAuthScreen(true);
+        return;
+      }
+      showCart();
+      setActiveScreen("cart-screen");
     });
 
-    function updateCartCount() {}
+    function updateCartCount() {
+      const count = cart.reduce((total, item) => total + item.quantity, 0);
+      document.getElementById("cart-count").textContent = count;
+    }
 
-    function showCart() {}
+    function showCart() {
+      const cartContent = document.getElementById("cart-content");
+      if (!cart.length) {
+        cartContent.innerHTML = '<div class="cart-empty">Seu carrinho está vazio</div>';
+        return;
+      }
+      const rows = cart
+        .map(
+          (item) => `
+            <div class="cart-item">
+              <img src="${item.img}" alt="${item.name}" class="cart-item-img" />
+              <div class="cart-item-details">
+                <h3>${item.name}</h3>
+                <p class="cart-item-price">${item.price}</p>
+              </div>
+              <div class="cart-item-total">
+                <p>Qtd: ${item.quantity}</p>
+                <button class="remove-btn" onclick="window.removeFromCart(${item.id})">Remover</button>
+              </div>
+            </div>
+          `
+        )
+        .join("");
 
-    window.removeFromCart = function(productId) {};
+      const totalValue = cart.reduce((sum, item) => {
+        const value = Number(item.price.replace(/[^0-9,]/g, "").replace(",", "."));
+        return sum + value * item.quantity;
+      }, 0);
+
+      cartContent.innerHTML = `
+        <div class="cart-items">${rows}</div>
+        <div class="cart-summary">
+          <p>Total: R$ ${totalValue.toFixed(2).replace(".", ",")}</p>
+          <button class="checkout-btn" onclick="alert('Checkout não implementado.')">Finalizar compra</button>
+        </div>
+      `;
+    }
+
+    window.removeFromCart = function (productId) {
+      cart = cart.filter((item) => item.id !== productId);
+      saveCart();
+      updateCartCount();
+      showCart();
+    };
+
+    productsLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      setActiveScreen("home-screen");
+    });
+
+    homeLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      setActiveScreen("home-screen");
+    });
+
+    profileLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (!currentUser) {
+        showAuthScreen(true);
+        return;
+      }
+      setProfileFields();
+      setActiveScreen("profile-screen");
+    });
+
+    cartLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (!currentUser) {
+        showAuthScreen(true);
+        return;
+      }
+      showCart();
+      setActiveScreen("cart-screen");
+    });
+
+    authLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (currentUser) {
+        if (confirm("Deseja sair do sistema?")) {
+          removeUser();
+          updateNavByAuth();
+          setActiveScreen("home-screen");
+        }
+        return;
+      }
+      showAuthScreen(false);
+    });
+
+    function setupMaskedInputs() {
+      [document.getElementById("cpf"), document.getElementById("cep"), document.getElementById("profile-cpf"), document.getElementById("profile-cep")].forEach((input) => {
+        input.addEventListener("input", () => {
+          const type = input.id.includes("cpf") ? "cpf" : "cep";
+          input.value = formatInput(input.value, type);
+        });
+      });
+    }
+
+    cepInput.addEventListener("blur", () => {
+      const raw = cepInput.value.replace(/\D/g, "");
+      if (raw.length === 8) {
+        fetchAddress(raw, (data) => fillAddressFields("", data));
+      }
+    });
+
+    profileCepInput.addEventListener("blur", () => {
+      const raw = profileCepInput.value.replace(/\D/g, "");
+      if (raw.length === 8) {
+        fetchAddress(raw, (data) => fillAddressFields("profile-", data));
+      }
+    });
 
     loadProducts();
+    loadCart();
+    setupMaskedInputs();
+    currentUser = getStoredUser();
+    updateNavByAuth();
+    setActiveScreen("home-screen");
   </script>
 </body>
 </html>
