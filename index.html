@@ -875,21 +875,21 @@
 
   <script>
     const products = [
-      { id: 1, name: "Baby tee Holanda", price: "R$ 99,90", img: "imagens/baby tee holanda.webp", description: "Camiseta confortável com estampa exclusiva da Holanda. Perfeita para o dia a dia." },
-      { id: 2, name: "Baby tee MMM", price: "R$ 99,90", img: "imagens/bt mmm.webp", description: "Camisa moderna e sofisticada. Ideal para looks casuais e profissionais." },
-      { id: 3, name: "Umbro piet blusa", price: "R$ 99,90", img: "imagens/carnan-online_0002_umbro2.webp", description: "Jaqueta de qualidade premium com design esportivo elegante." },
-      { id: 4, name: "Umbro piet casaco", price: "R$ 99,90", img: "imagens/carnan-online_0006_umbro6.webp", description: "Peça versátil que combina com qualquer visual. Conforto garantido." },
-      { id: 5, name: "Moletom Carnan azul", price: "R$ 99,90", img: "imagens/carnan-online_0050_Standard_Line-32000.webp", description: "Coleção padrão com excelente custo-benefício e qualidade superior." },
-      { id: 6, name: "Moletom Carnan roxo", price: "R$ 99,90", img: "imagens/carnan-online_0054_Standard_Line-32014.webp", description: "Peça essencial para qualquer guarda-roupa. Disponível em várias cores." },
-      { id: 7, name: "Moletom Mad Brasil", price: "R$ 99,90", img: "imagens/moletom brasil.webp", description: "Moletom confortável com design brasileiro. Perfeito para dias frios." },
-      { id: 8, name: "Moletom Mad", price: "R$ 99,90", img: "imagens/moletom mad.webp", description: "Moletom estiloso com acabamento premium. Versátil para qualquer ocasião." },
-      { id: 9, name: "Piet casaco", price: "R$ 99,90", img: "imagens/piet-online_0000_piet-catalogo10958.jpg", description: "Peça exclusiva da coleção Piet. Design sofisticado e moderno." },
-      { id: 10, name: "Piet Oakley manga comprida", price: "R$ 99,90", img: "imagens/piet-online_0086_FOA40912102E-0095_1_.jpg", description: "Coleção premium Piet com qualidade superior. Conforto total." },
-      { id: 11, name: "Piet milan blusa", price: "R$ 99,90", img: "imagens/piet-online_0086_piet-catalogo10971.jpg", description: "Peça sofisticada e elegante. Ideal para looks refinados." },
-      { id: 12, name: "Piet Oakley casaco", price: "R$ 99,90", img: "imagens/piet-online_0096_FOA40912102E-0107 hover.jpg", description: "Design exclusivo com materiais de primeira qualidade. Estilo garantido." }
+      { id: 1, name: "Baby tee Holanda", price: "R$ 99,90", img: "baby tee holanda.webp", description: "Camiseta confortável com estampa exclusiva da Holanda. Perfeita para o dia a dia." },
+      { id: 2, name: "Baby tee MMM", price: "R$ 99,90", img: "bt mmm.webp", description: "Camisa moderna e sofisticada. Ideal para looks casuais e profissionais." },
+      { id: 3, name: "Umbro piet blusa", price: "R$ 99,90", img: "carnan-online_0002_umbro2.webp", description: "Jaqueta de qualidade premium com design esportivo elegante." },
+      { id: 4, name: "Umbro piet casaco", price: "R$ 99,90", img: "carnan-online_0006_umbro6.webp", description: "Peça versátil que combina com qualquer visual. Conforto garantido." },
+      { id: 5, name: "Moletom Carnan azul", price: "R$ 99,90", img: "carnan-online_0050_Standard_Line-32000.webp", description: "Coleção padrão com excelente custo-benefício e qualidade superior." },
+      { id: 6, name: "Moletom Carnan roxo", price: "R$ 99,90", img: "carnan-online_0054_Standard_Line-32014.webp", description: "Peça essencial para qualquer guarda-roupa. Disponível em várias cores." },
+      { id: 7, name: "Moletom Mad Brasil", price: "R$ 99,90", img: "moletom brasil.webp", description: "Moletom confortável com design brasileiro. Perfeito para dias frios." },
+      { id: 8, name: "Moletom Mad", price: "R$ 99,90", img: "moletom mad.webp", description: "Moletom estiloso com acabamento premium. Versátil para qualquer ocasião." },
+      { id: 9, name: "Piet casaco", price: "R$ 99,90", img: "piet-online_0000_piet-catalogo10958.jpg", description: "Peça exclusiva da coleção Piet. Design sofisticado e moderno." },
+      { id: 10, name: "Piet Oakley manga comprida", price: "R$ 99,90", img: "piet-online_0086_FOA40912102E-0095_1_.jpg", description: "Coleção premium Piet com qualidade superior. Conforto total." },
+      { id: 11, name: "Piet milan blusa", price: "R$ 99,90", img: "piet-online_0086_piet-catalogo10971.jpg", description: "Peça sofisticada e elegante. Ideal para looks refinados." },
+      { id: 12, name: "Piet Oakley casaco", price: "R$ 99,90", img: "piet-online_0096_FOA40912102E-0107 hover.jpg", description: "Design exclusivo com materiais de primeira qualidade. Estilo garantido." }
     ];
 
-    const imageBasePath = "imagens/";
+    const imageBasePath = "";
     function getImagePath(src) {
       if (!src) return "";
       if (src.startsWith("http://") || src.startsWith("https://") || src.startsWith("data:") || src.includes("/")) {
